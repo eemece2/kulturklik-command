@@ -6,6 +6,7 @@ use AppBundle\Service\AgendaLoader;
 
 class AgendaLoaderTest extends \PHPUnit_Framework_TestCase
 {
+    protected $em;
     protected $demoAgendaPath;
     protected $demoAgendaLength;
 
@@ -13,6 +14,10 @@ class AgendaLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $this->demoAgendaPath = dirname(__FILE__) . '/../demoAgenda.xml';
         $this->demoAgendaLength = 2;
+
+        $this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
 
@@ -24,7 +29,7 @@ class AgendaLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $agendaLoader = new AgendaLoader();
 
-        $agendaLoader->load('not_exist.xml');
+        $agendaLoader->load('not_exist.xml', $this->em);
     }
 
     // Test demo load
@@ -32,7 +37,7 @@ class AgendaLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $agendaLoader = new AgendaLoader();
 
-        $eventsNumber = $agendaLoader->load($this->demoAgendaPath);
+        $eventsNumber = $agendaLoader->load($this->demoAgendaPath, $this->em);
 
         $this->assertEquals($eventsNumber, $this->demoAgendaLength);
     }

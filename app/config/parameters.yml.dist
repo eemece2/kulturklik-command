@@ -4,11 +4,12 @@
 parameters:
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     agenda
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
-    # database_path: "%kernel.root_dir%/data.db3"
+    database_path:     "%kernel.root_dir%/data.db3"
+    database_memory:   false
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
@@ -17,3 +18,4 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    agenda_url:        "http://opendata.euskadi.eus/contenidos/ds_eventos/agenda_cultura_euskadi/es_kultura/adjuntos/kulturklik.xml"

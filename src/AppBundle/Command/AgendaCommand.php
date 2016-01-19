@@ -20,8 +20,10 @@ class AgendaCommand extends ContainerAwareCommand
     {
         $xmlUrl = $this->getContainer()->getParameter('agenda_url');
 
+        $em = $this->getContainer()->get('doctrine')->getManager();
+
         $agendaLoader = $this->getContainer()->get('agendaloader');
-        $eventsNumber = $agendaLoader->load($xmlUrl);
+        $eventsNumber = $agendaLoader->load($xmlUrl, $em);
 
         $output->writeln('<info>events number: ' . $eventsNumber . '</info>');
     }
