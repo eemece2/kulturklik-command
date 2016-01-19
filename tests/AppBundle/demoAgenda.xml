@@ -1,0 +1,46 @@
+<rows num="2">
+    <row num="1">
+        <documentname>Demo event</documentname>
+        <documentdescription/>
+        <eventenddate>27/12/2016</eventenddate>
+        <eventonline>Sí</eventonline>
+        <eventregistrationenddate>25/11/2015</eventregistrationenddate>
+        <eventregistrationstartdate>24/11/2015</eventregistrationstartdate>
+        <eventstartdate>27/12/2016</eventstartdate>
+        <eventtype>012</eventtype>
+        <friendlyurl>
+        http://opendata.euskadi.eus/catalogo/-/evento/20151117142228/-faboo-/kulturklik/es/
+        </friendlyurl>
+        <physicalurl>
+        http://opendata.euskadi.eus/catalogo/-/contenidos/evento/20151117142228/es_def/index.shtml
+        </physicalurl>
+        <dataxml>
+        http://opendata.euskadi.eus/contenidos/evento/20151117142228/es_def/data/es_r01dtpd151159c5ffe1a48b14ba55eb3c450a81360
+        </dataxml>
+        <metadataxml>
+        http://opendata.euskadi.eus/contenidos/evento/20151117142228/r01Index/20151117142228-idxContent.xml
+        </metadataxml>
+    </row>
+    <row num="2">
+        <documentname>Petite Salope!</documentname>
+        <documentdescription/>
+        <eventenddate>02/12/2016</eventenddate>
+        <eventonline>No</eventonline>
+        <eventregistrationenddate>05/01/2016</eventregistrationenddate>
+        <eventregistrationstartdate>04/01/2016</eventregistrationstartdate>
+        <eventstartdate>02/12/2016</eventstartdate>
+        <eventtype>Otros</eventtype>
+        <friendlyurl>
+        http://opendata.euskadi.eus/catalogo/-/evento/20151231010948/petite-salope-/kulturklik/es/
+        </friendlyurl>
+        <physicalurl>
+        http://opendata.euskadi.eus/catalogo/-/contenidos/evento/20151231010948/es_def/index.shtml
+        </physicalurl>
+        <dataxml>
+        http://opendata.euskadi.eus/contenidos/evento/20151231010948/es_def/data/es_r01dtpd1520c3b84f91949bd2640b5dc47a9c6d7fe
+        </dataxml>
+        <metadataxml>
+        http://opendata.euskadi.eus/contenidos/evento/20151231010948/r01Index/20151231010948-idxContent.xml
+        </metadataxml>
+    </row>
+</rows>
