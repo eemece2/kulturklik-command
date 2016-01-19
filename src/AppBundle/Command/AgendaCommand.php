@@ -18,6 +18,12 @@ class AgendaCommand extends ContainerAwareCommand
                 'url',
                 InputArgument::OPTIONAL,
                 'Agenda XML remote URL'
+            )
+            ->addOption(
+                'clear',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, first remove all events'
             );
     }
 
@@ -25,11 +31,17 @@ class AgendaCommand extends ContainerAwareCommand
     {
         // Arguments
         $urlArgument = $input->getArgument('url');
+        // Options
+        $clearOption = $input->getOption('clear');
 
         $xmlUrl = $this->getContainer()->getParameter('agenda_url');
         if($urlArgument) {
             $xmlUrl = $urlArgument;
             $output->writeln('URL: ' . $urlArgument);
+        }
+
+        if($clearOption) {
+            $this->removeAllEvents($em);
         }
 
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -38,5 +50,12 @@ class AgendaCommand extends ContainerAwareCommand
         $eventsNumber = $agendaLoader->load($xmlUrl, $em);
 
         $output->writeln('<info>events number: ' . $eventsNumber . '</info>');
+    }
+
+    protected function removeAllEvents($em)
+    {
+        $q = $em->createQuery('delete from AppBundle\Entity\Event');
+
+        return $q->execute();
     }
 }
