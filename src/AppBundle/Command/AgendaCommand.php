@@ -7,6 +7,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use AppBundle\Service\AgendaLoader;
+
 class AgendaCommand extends ContainerAwareCommand
 {
     protected function configure()
@@ -18,6 +20,11 @@ class AgendaCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>events number: 2</info>');
+        $xmlUrl = dirname(__FILE__) . '/../../../tests/AppBundle/demoAgenda.xml';
+
+        $agendaLoader = new AgendaLoader();
+        $eventsNumber = $agendaLoader->load($xmlUrl);
+
+        $output->writeln('<info>events number: ' . $eventsNumber . '</info>');
     }
 }
