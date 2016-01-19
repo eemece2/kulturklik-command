@@ -18,6 +18,6 @@ class AgendaCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>events number: 0</info>');
+        $output->writeln('<info>events number: 2</info>');
     }
 }
