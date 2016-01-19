@@ -13,12 +13,24 @@ class AgendaCommand extends ContainerAwareCommand
     {
         $this
             ->setName('agenda:import')
-            ->setDescription('Agenda import');
+            ->setDescription('Agenda import')
+            ->addArgument(
+                'url',
+                InputArgument::OPTIONAL,
+                'Agenda XML remote URL'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Arguments
+        $urlArgument = $input->getArgument('url');
+
         $xmlUrl = $this->getContainer()->getParameter('agenda_url');
+        if($urlArgument) {
+            $xmlUrl = $urlArgument;
+            $output->writeln('URL: ' . $urlArgument);
+        }
 
         $em = $this->getContainer()->get('doctrine')->getManager();
 
