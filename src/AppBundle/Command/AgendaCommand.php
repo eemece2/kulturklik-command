@@ -18,7 +18,7 @@ class AgendaCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $xmlUrl = dirname(__FILE__) . '/../../../tests/AppBundle/demoAgenda.xml';
+        $xmlUrl = $this->getContainer()->getParameter('agenda_url');
 
         $agendaLoader = $this->getContainer()->get('agendaloader');
         $eventsNumber = $agendaLoader->load($xmlUrl);

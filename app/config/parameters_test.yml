@@ -1,0 +1,3 @@
+# This file is auto-generated during the composer install
+parameters:
+    agenda_url: '%kernel.root_dir%/../tests/AppBundle/demoAgenda.xml'
