@@ -34,6 +34,8 @@ class AgendaCommand extends ContainerAwareCommand
         // Options
         $clearOption = $input->getOption('clear');
 
+        $em = $this->getContainer()->get('doctrine')->getManager();
+
         $xmlUrl = $this->getContainer()->getParameter('agenda_url');
         if($urlArgument) {
             $xmlUrl = $urlArgument;
@@ -43,8 +45,6 @@ class AgendaCommand extends ContainerAwareCommand
         if($clearOption) {
             $this->removeAllEvents($em);
         }
-
-        $em = $this->getContainer()->get('doctrine')->getManager();
 
         $agendaLoader = $this->getContainer()->get('agendaloader');
         $eventsNumber = $agendaLoader->load($xmlUrl, $em);
