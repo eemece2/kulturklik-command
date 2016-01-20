@@ -1,9 +1,9 @@
 kulturklik-command
 ==================
 
-# Comando Symfony Recuperar XML de la agenda de Kulturkilk:
+# Comando Symfony para recuperar XML de la agenda de Kulturkilk
 
-## Consideraciones iniciales:
+## Consideraciones iniciales
 Podemos tener dos escenarios:
 - será un acción puntual,
 - o teniendo en cuenta que va a ser almacenado en una BD y posteriormente accedido desde una web/aplicación, será una acción periódica, para actualizar la BD (los datos del open data de kulturik indica que se actualizan diariamente). (Actualización que podrá realizarse por un crontab diario u horario que lance el comando).
@@ -38,7 +38,7 @@ El comando tiene como opción “clear”, que borra todos los eventos de la BD
 
 La tarea de obtener la agenda, deserializarla y guardar/persistir los registros en BD se realiza con la clase/servicio AgendaLoader.
 
-AgendaLoader se encarga de cargar y parsear el fichero XML de la agenda, y para ello usa la clase DOMDocument, y obtiene con DOMXPath la colección de nodos que representan los eventos. Cada nodo lo deserializa con la clase EventXmlSerializer, que se encarga de extraer los campos del evento y crear con ellos una instancia de la entidad “Event” (Doctrine Entity), para a continuación guardarlos/persistirlos en la BD mediante el entityManager de Doctrine.
+AgendaLoader se encarga de cargar y parsear el fichero XML de la agenda, y para ello usa la clase DOMDocument, y obtiene con DOMXPath la colección de nodos que representan los eventos. Cada nodo lo deserializa con la clase **EventXmlSerializer**, que se encarga de extraer los campos del evento y crear con ellos una instancia de la entidad “Event” (Doctrine Entity), para a continuación guardarlos/persistirlos en la BD mediante el entityManager de Doctrine.
 
 Se configura como servicio en Symfony, mediante el “Service container” (app/config/services.yml). AgendaLoader será la única dependencia en el comando (a parte de las necesarias por el comando en si).
 
@@ -73,7 +73,7 @@ url (opcional): URL o ruta local del XML de la agenda
 
 --clear: borra todos los registros de la entidad Event
 
---nodb: no persiste en db ningún registro
+--nodb: no persiste en DB ningún registro
 
 
 ## Prerequisitos:
