@@ -57,11 +57,12 @@ Doctrine con anotaciones. Una única entidad: Event
 
 ## BD
 Se usa SQLite para simplificar el deploy de la demo (BD en app/data.db).
+Usando la opción --nodb no se usa persisencia en BD, util en pruebas y en test del AgendaCommand
 
 
 ## Uso del comando:
 ```sh
-$ php bin/console agenda:import [--clear] [url=URLALTERNATIVA]
+$ php bin/console agenda:import [--clear] [--nodb] [url=URLALTERNATIVA]
 ```
 
 **argumentos:**
@@ -71,6 +72,8 @@ url (opcional): URL o ruta local del XML de la agenda
 **opciones:**
 
 --clear: borra todos los registros de la entidad Event
+
+--nodb: no persiste en db ningún registro
 
 
 ## Prerequisitos:
@@ -97,7 +100,8 @@ Se realizan tests no exaustivos (es necesario cubrir más casos)  a:
 
 El comando **AgendaCommand** con AgendaCommandTest, que carga, gracias al uso del entorno “test”, la agenda de un archivo local con solo dos eventos (tests/AppBundle/demoAgenda.xml, configurado en app/config/parameters_test.yml que es importado por app/config/config_test.yml)).
 
-La clase **AgendaLoader** con AgendaLoaderTest, en donde se usa un Mock/Stub del entityManager para evitar persistir en BD. Como test adicional, funcional, se puede cambiar la configuración de parámetros en entorno “test” (en  app/config/parameters_test.yml) para usar una BD diferente a la de “producción” y verificar que funciona el comando completo, con persistencia en BD incluida.
+La clase **AgendaLoader** con AgendaLoaderTest, en donde se usa un Mock/Stub del entityManager para evitar persistir en BD.
+Como test adicional, se puede añadir control de las llamadas a los métodos del Mock del entityManager (un único flush, etc).
 
 La clase **EventXMLSerializer** con EventXMLSerializer, comprobando la deserialización de campos (date y boolean) y la deserialización de un evento entero.
 

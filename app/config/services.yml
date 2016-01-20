@@ -6,3 +6,5 @@ parameters:
 services:
     agendaloader:
         class: AppBundle\Service\AgendaLoader
+    nodbEntityManager:
+        class: AppBundle\Service\NodbEntityManager

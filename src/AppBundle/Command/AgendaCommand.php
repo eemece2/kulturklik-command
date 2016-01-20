@@ -24,6 +24,12 @@ class AgendaCommand extends ContainerAwareCommand
                 null,
                 InputOption::VALUE_NONE,
                 'If set, first remove all events'
+            )
+            ->addOption(
+                'nodb',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, not use DB'
             );
     }
 
@@ -33,8 +39,13 @@ class AgendaCommand extends ContainerAwareCommand
         $urlArgument = $input->getArgument('url');
         // Options
         $clearOption = $input->getOption('clear');
+        $nodbOption = $input->getOption('nodb');
 
-        $em = $this->getContainer()->get('doctrine')->getManager();
+        if($nodbOption) {
+            $em = $this->getContainer()->get('nodbEntityManager');
+        } else {
+            $em = $this->getContainer()->get('doctrine')->getManager();
+        }
 
         $xmlUrl = $this->getContainer()->getParameter('agenda_url');
         if($urlArgument) {
@@ -42,7 +53,7 @@ class AgendaCommand extends ContainerAwareCommand
             $output->writeln('URL: ' . $urlArgument);
         }
 
-        if($clearOption) {
+        if($clearOption && !$nodbOption) {
             $this->removeAllEvents($em);
         }
 

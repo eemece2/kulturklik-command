@@ -18,7 +18,11 @@ class AgendaCommandTest extends KernelTestCase
 
         $command = $application->find('agenda:import');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array());
+        $commandTester->execute(
+            array(
+                '--nodb' => true
+            )
+        );
 
         $this->assertEquals('events number: 2', trim($commandTester->getDisplay()));
     }
