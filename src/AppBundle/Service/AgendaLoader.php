@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use \DOMDocument;
 use \DOMXPath;
+use \DOMNode;
 
 use AppBundle\Entity\Event;
 use AppBundle\Entity\EventXmlSerializer;
@@ -34,20 +35,20 @@ class AgendaLoader {
         return $eventElements->length;
     }
 
-    protected function loadEvent($eventElement)
+    protected function loadEvent(DOMNode $eventElement)
     {
         $event = $this->deserializeEvent($eventElement);
         $this->persistEvent($event);
     }
 
-    protected function deserializeEvent($eventElement)
+    protected function deserializeEvent(DOMNode $eventElement)
     {
         $serializer = new EventXmlSerializer();
 
         return $serializer->deserialize($eventElement);
     }
 
-    protected function persistEvent($event)
+    protected function persistEvent(Event $event)
     {
         $this->em->persist($event);
     }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use  \DOMNode;
+
 class EventXmlSerializer {
 
     protected $dateTextFormat = 'd/m/Y';
@@ -10,7 +12,7 @@ class EventXmlSerializer {
         'Sí' => true
     );
 
-    public function deserialize($eventElement)
+    public function deserialize(DOMNode $eventElement)
     {
         $documentname = $eventElement->getElementsByTagName('documentname')->item(0)->textContent;
         $documentdescription = $eventElement->getElementsByTagName('documentdescription')->item(0)->textContent;

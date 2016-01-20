@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\ORM\EntityManager;
 
 class AgendaCommand extends ContainerAwareCommand
 {
@@ -63,7 +64,7 @@ class AgendaCommand extends ContainerAwareCommand
         $output->writeln('<info>events number: ' . $eventsNumber . '</info>');
     }
 
-    protected function removeAllEvents($em)
+    protected function removeAllEvents(EntityManager $em)
     {
         $q = $em->createQuery('delete from AppBundle\Entity\Event');
 
