@@ -105,4 +105,11 @@ Como test adicional, se puede añadir control de las llamadas a los métodos del
 
 La clase **EventXMLSerializer** con EventXMLSerializer, comprobando la deserialización de campos (date y boolean) y la deserialización de un evento entero.
 
+#Arquitectura web pública
 
+Podemos considerar si los datos tendrán que ser accedidos, además de por la web pública, también desde aplicaciones móviles u otros clientes (kiosk, IoT, etc), en cuyo caso podemos utilizar una arquitectura orientada a servicio web con, por ejemplo, una REST API en el backend y un cliente rico, que en web podría ser un frontend con SPA (aunque en este caso no favorecemos el SEO de la web). Aunque en web no usemos una SPA también podemos consumir la API desde backend (como la M de un MVC), desacoplando bastante capa de negocio y presentación de la capa de datos (pero quizás penalizando la velocidad de acceso).
+
+Si nuestro objetivo es únicamente mostrar datos en la web, podemos usar una arquitectura estándar HTML con un patrón MVC en backend, con un modelo de datos con ORM, controladores, y plantillas de generación del HTML estático.
+En general, la estructura de la web constaría de la página del listado de eventos de la agenda, con posible buscador/filtrado, y de la página de detalle de evento de la agenda.
+
+El open data de la agenda separa el contenido descriptivo del evento en un HTML en un recurso externo (definido en los campos del XML principal), que podría ser interesante cargarlo en la BD mediante el comando de importación de la agenda, haciendo peticiones recursivas a esos recursos. En caso de no hacer esto último, si queremos presentar ese HTML de descripción del evento podemos incrustar en la página el contenido del evento, o en backend con una solicitud web y inyectandolo en la plantilla, o en frontend con un object de tipo text/html (si trabajamos con HTML5). 
